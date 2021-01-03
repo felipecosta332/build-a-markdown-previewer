@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+    <title>Markdown Previewer by Felipe Costa</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/1.2.7/marked.js" integrity="sha512-jwq2hFT92zJpzbvtN/lkPADAWkwS7K5RRR9fpdAmCc9+qCbYvjrZ6cxMHuaWx2CDzUc24bk6i4a6zc8Z75/kfQ==" crossorigin="anonymous"></script>
+    <script>
+      marked.setOptions({breaks: true});
+      function updatePreview() {
+        let previewElement = document.getElementById("preview");
+        let editorValue = document.getElementById("editor").value;
+        let markedUpHTML = marked(editorValue);
+        previewElement.innerHTML = markedUpHTML;
+      }
+      function setDefault() {
+        let defaultText = '# Markdown Previewer Website\n## Made By Felipe Costa\n[Learn more about Markdown](https://www.markdowntutorial.com/).\n<dl>\n\t<dt>Definition list</dt>\n\t<dd>Is something people use sometimes.</dd>\n\n\t<dt>Markdown in HTML</dt>\n\t<dd>Does *not* work **very** well. Use HTML <em>tags</em>.</dd>\n</dl>\n\n`This is an example of inline code`\n```js\nfunction exampleOf() {\n\treturn multiLineCodeBlock;\n}\n```\n- This\n- is\n- an\n- example\n- of\n- list\n- items\n\n> This is an example of block quote\n\n![Markdown Image](https://d33wubrfki0l68.cloudfront.net/e3541891e3115642d605aca52e4556d397e95c6f/4e2ba/images/quicktourexample.png)\n\n**This is an example of Bolded Text**';
+        let editorField = document.getElementById("editor");
+        let previewElement = document.getElementById("preview");
+        editorField.value = defaultText;
+        previewElement.innerHTML = marked(defaultText);
+      }
+    </script>
+    <style>
+      img {
+        max-width: 100%;
+      }
+    </style>
+  </head>
+  <body onload="setDefault()" class="bg-success">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col text-center text-white bg-success my-3">
+          <h1>Markdown Previewer by Felipe Costa</h1>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-6 bg-primary d-flex flex-column">
+          <h2 class="text-white text-center my-3">Editor</h2>
+          <div class="form-group flex-grow-1 d-flex flex-column">
+            <textarea id="editor" onkeyup="updatePreview()" class="form-control flex-grow-1"></textarea>
+          </div>
+        </div>
+        <div class="col-6 bg-white">
+          <h2 class="text-black text-center my-3">Preview</h2>
+          <div id="preview"></div>
+        </div>
+      </div>
+    </div>
+    <script src="https://cdn.freecodecamp.org/testable-projects-fcc/v1/bundle.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
+  </body>
+</html>
